@@ -1,0 +1,16 @@
+D:\360Downloads\GIS\GIS\bin\Debug\GIS.exe
+D:\360Downloads\GIS\GIS\bin\Debug\GIS.pdb
+D:\360Downloads\GIS\GIS\bin\Debug\MetroFramework.Design.dll
+D:\360Downloads\GIS\GIS\bin\Debug\MetroFramework.dll
+D:\360Downloads\GIS\GIS\bin\Debug\MetroFramework.Fonts.dll
+D:\360Downloads\GIS\GIS\obj\Debug\GIS.csprojAssemblyReference.cache
+D:\360Downloads\GIS\GIS\obj\Debug\GIS.Form1.resources
+D:\360Downloads\GIS\GIS\obj\Debug\GIS.Properties.Resources.resources
+D:\360Downloads\GIS\GIS\obj\Debug\GIS.csproj.GenerateResource.cache
+D:\360Downloads\GIS\GIS\obj\Debug\GIS.csproj.CoreCompileInputs.cache
+D:\360Downloads\GIS\GIS\obj\Debug\GIS.csproj.CopyComplete
+D:\360Downloads\GIS\GIS\obj\Debug\GIS.exe
+D:\360Downloads\GIS\GIS\obj\Debug\GIS.pdb
+D:\360Downloads\GIS\GIS\bin\Debug\SuperMap.Mapping.dll
+D:\360Downloads\GIS\GIS\bin\Debug\SuperMap.Data.dll
+D:\360Downloads\GIS\GIS\bin\Debug\zh-CN\SuperMap.Data.resources.dll

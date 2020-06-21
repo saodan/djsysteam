@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D612B9EF-F2A0-4257-AC8E-C2D267947381}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>GIS</RootNamespace>
+    <AssemblyName>GIS</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CSkin">
+      <HintPath>F:\CSkin 16.1.14.3\CSkin 16.1.14.3\CSkin 4.0\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="IrisSkin4">
+      <HintPath>F:\IrisSkin4\IrisSkin4\X86\IrisSkin4.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="SuperMap.Analyst.SpatialAnalyst">
+      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Analyst.SpatialAnalyst.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperMap.Data, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381" />
+    <Reference Include="SuperMap.Data.Conversion, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Data.Conversion.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperMap.Data.Topology">
+      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Data.Topology.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperMap.Layout, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x86\Debug\SuperMap.Layout.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperMap.Mapping">
+      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Mapping.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperMap.Realspace">
+      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Realspace.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperMap.UI.Controls">
+      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.UI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQL查询.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SQL查询.Designer.cs">
+      <DependentUpon>SQL查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="切换图层.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="切换图层.Designer.cs">
+      <DependentUpon>切换图层.cs</DependentUpon>
+    </Compile>
+    <Compile Include="地图名.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="地图名.Designer.cs">
+      <DependentUpon>地图名.cs</DependentUpon>
+    </Compile>
+    <Compile Include="基本属性.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="基本属性.Designer.cs">
+      <DependentUpon>基本属性.cs</DependentUpon>
+    </Compile>
+    <Compile Include="字段管理.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="字段管理.Designer.cs">
+      <DependentUpon>字段管理.cs</DependentUpon>
+    </Compile>
+    <Compile Include="导入数据集.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="导入数据集.Designer.cs">
+      <DependentUpon>导入数据集.cs</DependentUpon>
+    </Compile>
+    <Compile Include="导出为shp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="导出为shp.Designer.cs">
+      <DependentUpon>导出为shp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="属性.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="属性.Designer.cs">
+      <DependentUpon>属性.cs</DependentUpon>
+    </Compile>
+    <Compile Include="属性表.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="属性表.Designer.cs">
+      <DependentUpon>属性表.cs</DependentUpon>
+    </Compile>
+    <Compile Include="打印地图.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="打印地图.Designer.cs">
+      <DependentUpon>打印地图.cs</DependentUpon>
+    </Compile>
+    <Compile Include="打开数据库型工作空间.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="打开数据库型工作空间.Designer.cs">
+      <DependentUpon>打开数据库型工作空间.cs</DependentUpon>
+    </Compile>
+    <Compile Include="打开文件型工作空间.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="打开文件型工作空间.Designer.cs">
+      <DependentUpon>打开文件型工作空间.cs</DependentUpon>
+    </Compile>
+    <Compile Include="打开数据库型数据源.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="打开数据库型数据源.Designer.cs">
+      <DependentUpon>打开数据库型数据源.cs</DependentUpon>
+    </Compile>
+    <Compile Include="打开文件型数据源.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="打开文件型数据源.Designer.cs">
+      <DependentUpon>打开文件型数据源.cs</DependentUpon>
+    </Compile>
+    <Compile Include="文件型工作空间.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="文件型工作空间.Designer.cs">
+      <DependentUpon>文件型工作空间.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新建数据集.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新建数据集.Designer.cs">
+      <DependentUpon>新建数据集.cs</DependentUpon>
+    </Compile>
+    <Compile Include="新建文件型数据源.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新建文件型数据源.Designer.cs">
+      <DependentUpon>新建文件型数据源.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查询记录表.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查询记录表.Designer.cs">
+      <DependentUpon>查询记录表.cs</DependentUpon>
+    </Compile>
+    <Compile Include="查询语句.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="查询语句.Designer.cs">
+      <DependentUpon>查询语句.cs</DependentUpon>
+    </Compile>
+    <Compile Include="选择.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="选择.Designer.cs">
+      <DependentUpon>选择.cs</DependentUpon>
+    </Compile>
+    <Compile Include="选择图层.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="选择图层.Designer.cs">
+      <DependentUpon>选择图层.cs</DependentUpon>
+    </Compile>
+    <Compile Include="线拓扑检查.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="线拓扑检查.Designer.cs">
+      <DependentUpon>线拓扑检查.cs</DependentUpon>
+    </Compile>
+    <Compile Include="重命名.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="重命名.Designer.cs">
+      <DependentUpon>重命名.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="SQL查询.resx">
+      <DependentUpon>SQL查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="切换图层.resx">
+      <DependentUpon>切换图层.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="地图名.resx">
+      <DependentUpon>地图名.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="基本属性.resx">
+      <DependentUpon>基本属性.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="字段管理.resx">
+      <DependentUpon>字段管理.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="导入数据集.resx">
+      <DependentUpon>导入数据集.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="导出为shp.resx">
+      <DependentUpon>导出为shp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="属性.resx">
+      <DependentUpon>属性.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="属性表.resx">
+      <DependentUpon>属性表.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="打印地图.resx">
+      <DependentUpon>打印地图.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="打开数据库型工作空间.resx">
+      <DependentUpon>打开数据库型工作空间.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="打开文件型工作空间.resx">
+      <DependentUpon>打开文件型工作空间.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="打开数据库型数据源.resx">
+      <DependentUpon>打开数据库型数据源.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="打开文件型数据源.resx">
+      <DependentUpon>打开文件型数据源.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="文件型工作空间.resx">
+      <DependentUpon>文件型工作空间.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新建数据集.resx">
+      <DependentUpon>新建数据集.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="新建文件型数据源.resx">
+      <DependentUpon>新建文件型数据源.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询记录表.resx">
+      <DependentUpon>查询记录表.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="查询语句.resx">
+      <DependentUpon>查询语句.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="选择.resx">
+      <DependentUpon>选择.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="选择图层.resx">
+      <DependentUpon>选择图层.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="线拓扑检查.resx">
+      <DependentUpon>线拓扑检查.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="重命名.resx">
+      <DependentUpon>重命名.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
