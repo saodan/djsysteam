@@ -11,6 +11,21 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,6 +64,10 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CSkin">
       <HintPath>F:\CSkin 16.1.14.3\CSkin 16.1.14.3\CSkin 4.0\CSkin.dll</HintPath>
@@ -70,15 +89,15 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="SuperMap.Analyst.SpatialAnalyst">
-      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Analyst.SpatialAnalyst.dll</HintPath>
+      <HintPath>bin\x86\Debug\SuperMap.Analyst.SpatialAnalyst.dll</HintPath>
     </Reference>
     <Reference Include="SuperMap.Data, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381" />
     <Reference Include="SuperMap.Data.Conversion, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Data.Conversion.dll</HintPath>
+      <HintPath>bin\x86\Debug\SuperMap.Data.Conversion.dll</HintPath>
     </Reference>
     <Reference Include="SuperMap.Data.Topology">
-      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Data.Topology.dll</HintPath>
+      <HintPath>bin\x86\Debug\SuperMap.Data.Topology.dll</HintPath>
     </Reference>
     <Reference Include="SuperMap.Layout, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -88,10 +107,10 @@
       <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Mapping.dll</HintPath>
     </Reference>
     <Reference Include="SuperMap.Realspace">
-      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.Realspace.dll</HintPath>
+      <HintPath>bin\x86\Debug\SuperMap.Realspace.dll</HintPath>
     </Reference>
     <Reference Include="SuperMap.UI.Controls">
-      <HintPath>..\..\..\supermap-iobjectsdotnet-9.1.2-17224-71949-all\Bin\SuperMap.UI.Controls.dll</HintPath>
+      <HintPath>bin\x86\Debug\SuperMap.UI.Controls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -112,6 +131,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQL查询.cs">
@@ -119,6 +144,12 @@
     </Compile>
     <Compile Include="SQL查询.Designer.cs">
       <DependentUpon>SQL查询.cs</DependentUpon>
+    </Compile>
+    <Compile Include="修改界址点.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="修改界址点.Designer.cs">
+      <DependentUpon>修改界址点.cs</DependentUpon>
     </Compile>
     <Compile Include="切换图层.cs">
       <SubType>Form</SubType>
@@ -228,6 +259,12 @@
     <Compile Include="查询语句.Designer.cs">
       <DependentUpon>查询语句.cs</DependentUpon>
     </Compile>
+    <Compile Include="缓冲区参数.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="缓冲区参数.Designer.cs">
+      <DependentUpon>缓冲区参数.cs</DependentUpon>
+    </Compile>
     <Compile Include="选择.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +292,9 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -266,6 +306,9 @@
     </Compile>
     <EmbeddedResource Include="SQL查询.resx">
       <DependentUpon>SQL查询.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="修改界址点.resx">
+      <DependentUpon>修改界址点.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="切换图层.resx">
       <DependentUpon>切换图层.cs</DependentUpon>
@@ -321,6 +364,9 @@
     <EmbeddedResource Include="查询语句.resx">
       <DependentUpon>查询语句.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="缓冲区参数.resx">
+      <DependentUpon>缓冲区参数.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="选择.resx">
       <DependentUpon>选择.cs</DependentUpon>
     </EmbeddedResource>
@@ -346,6 +392,13 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

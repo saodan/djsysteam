@@ -12,8 +12,8 @@ namespace GIS
 {
     public partial class 属性表 : Form
     {
-        Dataset dataset = null;
-        public 属性表(Dataset dataset)
+        Recordset dataset = null;
+        public 属性表(Recordset dataset)
         {
             this.dataset = dataset;
             InitializeComponent();
@@ -21,9 +21,8 @@ namespace GIS
 
         private void 属性表_Load(object sender, EventArgs e)
         {
-            DatasetVector vector = dataset as DatasetVector;
-            this.Text = vector.Name;
-            Recordset recordset = vector.GetRecordset(false, CursorType.Dynamic);
+
+            Recordset recordset = dataset;
             this.skinDataGridView1.Columns.Clear();
             this.skinDataGridView1.Rows.Clear();
 

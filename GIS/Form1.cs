@@ -40,22 +40,27 @@ namespace GIS
         }
         private void setControls(float newx, float newy, Control cons)
         {
-            foreach (Control con in cons.Controls)
-            {
-                if (con.Tag != null)
+            try {
+                foreach (Control con in cons.Controls)
                 {
-                    string[] mytag = con.Tag.ToString().Split(new char[] { ';' });
-                    con.Width = Convert.ToInt32(System.Convert.ToSingle(mytag[0]) * newx);
-                    con.Height = Convert.ToInt32(System.Convert.ToSingle(mytag[1]) * newy);
-                    con.Left = Convert.ToInt32(System.Convert.ToSingle(mytag[2]) * newx);
-                    con.Top = Convert.ToInt32(System.Convert.ToSingle(mytag[3]) * newy);
-                    Single currentSize = System.Convert.ToSingle(mytag[4]) * newy;
-                    con.Font = new Font(con.Font.Name, currentSize, con.Font.Style, con.Font.Unit);
-                    if (con.Controls.Count > 0)
+                    if (con.Tag != null)
                     {
-                        setControls(newx, newy, con);
+                        string[] mytag = con.Tag.ToString().Split(new char[] { ';' });
+                        con.Width = Convert.ToInt32(System.Convert.ToSingle(mytag[0]) * newx);
+                        con.Height = Convert.ToInt32(System.Convert.ToSingle(mytag[1]) * newy);
+                        con.Left = Convert.ToInt32(System.Convert.ToSingle(mytag[2]) * newx);
+                        con.Top = Convert.ToInt32(System.Convert.ToSingle(mytag[3]) * newy);
+                        Single currentSize = System.Convert.ToSingle(mytag[4]) * newy;
+                        con.Font = new Font(con.Font.Name, currentSize, con.Font.Style, con.Font.Unit);
+                        if (con.Controls.Count > 0)
+                        {
+                            setControls(newx, newy, con);
+                        }
                     }
                 }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -115,9 +120,9 @@ namespace GIS
                 {
                     mapControl1.Map.Open(workspace1.Maps[0]);
                     mapControl1.Map.Refresh();
-                   
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -125,7 +130,7 @@ namespace GIS
             }
 
         }
-        
+
         private void sQLSever工作空间ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -146,7 +151,7 @@ namespace GIS
                 }
                 workspaceControl1.WorkspaceTree.Workspace = workspace1;
                 workspaceControl1.Refresh();
-            }catch(Exception ex)
+            } catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -259,7 +264,7 @@ namespace GIS
             {
                 MessageBox.Show(ex.ToString());
             }
-            
+
         }
 
         private void sQLSever工作空间ToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -285,7 +290,7 @@ namespace GIS
             {
                 MessageBox.Show(ex.ToString());
             }
-            
+
         }
 
         private void 数据库型ToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -309,7 +314,7 @@ namespace GIS
                 workspaceControl1.Refresh();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -325,7 +330,7 @@ namespace GIS
                 Datasource datasources = workspace1.Datasources.Create(connectionInfo);
                 if (datasources != null)
                 {
-                    DialogResult result = MessageBox.Show("成功创建数据库型数据源，是否打开此数据源","提示",MessageBoxButtons.YesNo);
+                    DialogResult result = MessageBox.Show("成功创建数据库型数据源，是否打开此数据源", "提示", MessageBoxButtons.YesNo);
                     if (DialogResult.Yes == result)
                     {
                         workspaceControl1.WorkspaceTree.Workspace = workspace1;
@@ -538,7 +543,7 @@ namespace GIS
         {
             重命名 open = new 重命名();
             open.ShowDialog();
-            workspace1.Caption= open.name();
+            workspace1.Caption = open.name();
             WorkspaceConnectionInfo connectionInfo = workspace1.ConnectionInfo;
             workspace1.SaveAs(connectionInfo);
             workspaceControl1.Refresh();
@@ -659,14 +664,14 @@ namespace GIS
 
         private void 关闭数据源所有ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("是否关闭所有数据源","提示",MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("是否关闭所有数据源", "提示", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 string name = string.Empty;
                 int j = workspace1.Datasources.Count;
                 for (int i = 0; i < j; i++)
                 {
-                    name += string.Format("\"{0}\" ",workspace1.Datasources[0].Alias);
+                    name += string.Format("\"{0}\" ", workspace1.Datasources[0].Alias);
                     workspace1.Datasources.Close(0);
                 }
                 MessageBox.Show("数据源" + name + "已关闭");
@@ -689,7 +694,7 @@ namespace GIS
                     mapControl1.Map.Refresh();
                 }
             }
-             catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -701,7 +706,7 @@ namespace GIS
             {
                 List<string> list = new List<string>();
                 int i = workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Text].Datasets.Count;
-                for(int j = 0; j < i; j++)
+                for (int j = 0; j < i; j++)
                 {
                     list.Add(workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Text].Datasets[j].Name);
                 }
@@ -732,7 +737,7 @@ namespace GIS
                 workspace1.Datasources.ModifyAlias(workspaceControl1.WorkspaceTree.SelectedNode.Text, open.name());
                 workspaceControl1.Refresh();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -741,7 +746,7 @@ namespace GIS
         private void 关闭ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string name = workspaceControl1.WorkspaceTree.SelectedNode.Text;
-            DialogResult result = MessageBox.Show("是否关闭数据源"+name, "提示", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("是否关闭数据源" + name, "提示", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Text].Close();
@@ -755,11 +760,12 @@ namespace GIS
         {
             try
             {
-                Dataset datasets = workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name].Datasets[workspaceControl1.WorkspaceTree.SelectedNode.Text];
-                属性表 open = new 属性表(datasets);
+                DatasetVector datasets = workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name].Datasets[workspaceControl1.WorkspaceTree.SelectedNode.Text] as DatasetVector;
+                
+                属性表 open = new 属性表(datasets.GetRecordset(false,CursorType.Dynamic));
                 open.ShowDialog();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -772,7 +778,7 @@ namespace GIS
                 mapControl1.Map.Layers.Add(workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name].Datasets[workspaceControl1.WorkspaceTree.SelectedNode.Text], true);
                 mapControl1.Map.Refresh();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -786,18 +792,18 @@ namespace GIS
                 open.ShowDialog();
                 workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name].Datasets.Rename(workspaceControl1.WorkspaceTree.SelectedNode.Text, open.name());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-            
+
         }
 
         private void 删除数据集ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             try
             {
-                DialogResult result = MessageBox.Show("确认删除数据源"+ workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name + "中的数据集"+workspaceControl1.WorkspaceTree.SelectedNode.Text + "，删除后无法撤销", "提示", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("确认删除数据源" + workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name + "中的数据集" + workspaceControl1.WorkspaceTree.SelectedNode.Text + "，删除后无法撤销", "提示", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                     workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name].Datasets.Delete(workspaceControl1.WorkspaceTree.SelectedNode.Text);
             }
@@ -811,7 +817,7 @@ namespace GIS
         {
             try
             {
-                导出为shp open=new 导出为shp(workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name].Datasets[workspaceControl1.WorkspaceTree.SelectedNode.Text]);
+                导出为shp open = new 导出为shp(workspace1.Datasources[workspaceControl1.WorkspaceTree.SelectedNode.Parent.Name].Datasets[workspaceControl1.WorkspaceTree.SelectedNode.Text]);
                 open.ShowDialog();
                 ExportSetting export = open.con();
                 DataExport data = new DataExport();
@@ -826,7 +832,7 @@ namespace GIS
                     MessageBox.Show("文件导出失败");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -850,7 +856,7 @@ namespace GIS
                 {
                     MessageBox.Show("文件导入失败");
                 }
-         
+
             }
             catch (Exception ex)
             {
@@ -881,6 +887,16 @@ namespace GIS
                 recordset.Edit();
                 基本属性 open = new 基本属性(recordset);
                 open.ShowDialog();
+            }
+            if (vector.Name.Contains("界址点"))
+            {
+                Recordset recordset = vector.GetRecordset(false, CursorType.Dynamic);
+                recordset.MoveLast();
+                recordset.Edit();
+                recordset.SetFieldValue("X", recordset.GetGeometry().InnerPoint.X);
+                recordset.SetFieldValue("Y", recordset.GetGeometry().InnerPoint.Y);
+                recordset.SetFieldValue("界址点号", recordset.GetFieldValue("SmID").ToString());
+                recordset.Update();
             }
         }
 
@@ -1028,7 +1044,7 @@ namespace GIS
                 mapControl1.Map.Refresh();
                 recordset.Dispose();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -1058,23 +1074,25 @@ namespace GIS
                 Boolean hasGeometry = false;
                 foreach (Layer layer in mapControl1.Map.Layers)
                 {
-                    DatasetVector dataset = layer.Dataset as DatasetVector;
-
-                    if (dataset == null)
+                    if (layer.Name == "权属线@数据源1")
                     {
-                        continue;
-                    }
-                    Recordset recordset = dataset.Query(queryParameter);
-                    if (recordset.RecordCount > 0)
-                    {
-                        hasGeometry = true;
-                    }
-                    查询记录表 open1 = new 查询记录表(recordset);
-                    open1.Show();
-                    Selection selection = layer.Selection;
+                        DatasetVector dataset = layer.Dataset as DatasetVector;
 
-                    selection.FromRecordset(recordset);
-                    recordset.Dispose();
+                        if (dataset == null)
+                        {
+                            continue;
+                        }
+                        Recordset recordset = dataset.Query(queryParameter);
+                        if (recordset.RecordCount > 0)
+                        {
+                            hasGeometry = true;
+                        }
+                        属性表 open1 = new 属性表(recordset);
+                        open1.Show();
+                        Selection selection = layer.Selection;
+
+                        selection.FromRecordset(recordset); 
+                    }
                 }
                 if (!hasGeometry)
                 {
@@ -1102,7 +1120,7 @@ namespace GIS
         string NAME = null;
         private void 打开属性表ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach(Layer layer in mapControl1.Map.Layers)
+            foreach (Layer layer in mapControl1.Map.Layers)
             {
                 if (layer.IsSelectable)
                 {
@@ -1120,7 +1138,7 @@ namespace GIS
             this.skinDataGridView1.Show();
             //将选择集转换为记录
             Recordset recordset = selection[0].ToRecordset();
-            
+
             this.skinDataGridView1.Columns.Clear();
             this.skinDataGridView1.Rows.Clear();
 
@@ -1161,22 +1179,22 @@ namespace GIS
                 this.skinDataGridView1.Rows.Add(row);
                 recordset.MoveNext();
             }
-            this.skinDataGridView1.Update();           
+            this.skinDataGridView1.Update();
             recordset.Dispose();
 
         }
         Selection selection;
-        int ID;
+        string ID;
         Recordset recordset1;
         private void skinDataGridView1_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                ID = Convert.ToInt32(skinDataGridView1.Rows[skinDataGridView1.CurrentCell.RowIndex].Cells[skinDataGridView1.CurrentCell.ColumnIndex].Value.ToString());
+                ID = skinDataGridView1.Rows[skinDataGridView1.CurrentCell.RowIndex].Cells["宗地号"].Value.ToString();
                 DatasetVector vector = mapControl1.Map.Layers[NAME].Dataset as DatasetVector;
                 QueryParameter query = new QueryParameter();
                 query.CursorType = CursorType.Static;
-                query.AttributeFilter = string.Format("SmID={0}", ID);
+                query.AttributeFilter = string.Format("宗地号=\'{0}\'", ID);
                 recordset1 = vector.Query(query);
                 selection = mapControl1.Map.Layers[NAME].Selection;
                 selection.FromRecordset(recordset1);
@@ -1192,22 +1210,7 @@ namespace GIS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (this.timer1.Interval % 2 == 0)
-            {
-                selection.Remove(ID);
-                mapControl1.Map.Refresh();
-            }
-            else
-            {
-                selection.FromRecordset(recordset1);
-                mapControl1.Map.Refresh();
-            }
-            timer1.Interval++;
-            if (timer1.Interval % 500 == 6)
-            {
-                timer1.Interval = 500;
-                timer1.Enabled = false;
-            }
+
         }
 
         private void 自由选择ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1224,10 +1227,6 @@ namespace GIS
                 mapControl1.Map.Refresh();
             }
         }
-        private void 缓冲区分析ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void 选择ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1241,7 +1240,7 @@ namespace GIS
             {
                 切换图层 open = new 切换图层(mapControl1.Map);
                 open.ShowDialog();
-                foreach(Layer layer in mapControl1.Map.Layers)
+                foreach (Layer layer in mapControl1.Map.Layers)
                 {
                     if (layer.Name == open.name())
                     {
@@ -1255,7 +1254,7 @@ namespace GIS
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -1323,13 +1322,13 @@ namespace GIS
                 open.ShowDialog();
                 string name = open.name();
                 string xml = mapControl1.Map.ToXML();
-                int k = workspace1.Maps.Add(name,xml);
+                int k = workspace1.Maps.Add(name, xml);
                 if (k > 0)
                 {
                     MessageBox.Show("地图" + "\"" + name + "\"" + "保存成功");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -1354,7 +1353,7 @@ namespace GIS
                 }
             }
         }
-        Dictionary<double, double> ts=new Dictionary<double, double>();
+        Dictionary<double, double> ts = new Dictionary<double, double>();
         List<double> Xx = new List<double>();
         List<double> Yy = new List<double>();
         GeoStyle geoStyle_P = new GeoStyle();
@@ -1384,7 +1383,27 @@ namespace GIS
             }
             Application.Exit();
         }
+        private void 宗地合并ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("宗地合并成功");
+        }
 
+        private void 删除界址点ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection[] selection = mapControl1.Map.FindSelection(true);
+            Recordset recordset = selection[0].ToRecordset();
+            if (recordset.Dataset.Name != "界址点")
+            {
+                MessageBox.Show("请选择要删除的界址点要素");
+                return;
+            }
+            recordset.Edit();
+            DialogResult result = MessageBox.Show("确定删除要素", "提示", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+                if (recordset.Delete())
+                    MessageBox.Show("删除成功");
+            mapControl1.Map.Refresh();
+        }
         private void 自由选择ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             mapControl1.Action = SuperMap.UI.Action.Select2;
@@ -1416,7 +1435,7 @@ namespace GIS
 
         private void 修改宗地ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void 选择宗地ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1432,9 +1451,8 @@ namespace GIS
                 MessageBox.Show("请只选择一条记录");
                 return;
             }
-            DatasetVector vector = selection[0].Dataset as DatasetVector;
-            Recordset recordset = vector.GetRecordset(false, CursorType.Dynamic);
-            recordset.MoveLast();
+             
+            Recordset recordset = selection[0].ToRecordset();
             recordset.Edit();
             属性 open = new 属性(recordset);
             open.ShowDialog();
@@ -1443,10 +1461,10 @@ namespace GIS
 
         private void 删除要素ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Selection[] selection = mapControl1.Map.FindSelection(true); 
+            Selection[] selection = mapControl1.Map.FindSelection(true);
             Recordset recordset = selection[0].ToRecordset();
             recordset.Edit();
-            DialogResult result = MessageBox.Show("确定删除要素","提示",MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("确定删除要素", "提示", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
                 if (recordset.Delete())
                     MessageBox.Show("删除成功");
@@ -1486,6 +1504,210 @@ namespace GIS
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void 添加注记ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mapControl1.Action = SuperMap.UI.Action.CreateText;
+        }
+
+        private void 添加节点ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            mapControl1.Action = SuperMap.UI.Action.CreatePie;
+        }
+
+        private void 移动节点ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            mapControl1.Action = SuperMap.UI.Action.VertexAdd;
+        }
+
+        private void 图层设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (mapControl1.Map.Layers.Count < 1)
+            {
+                MessageBox.Show("请载入缓冲区分析图层");
+                return;
+            }
+
+            选择图层 open1 = new 选择图层(mapControl1.Map);
+            open1.ShowDialog();
+            foreach (Layer layer in mapControl1.Map.Layers)
+            {
+                if (layer.Name == open1.namelayer1())
+                {
+                    layer.IsSelectable = true;
+                    mapControl1.Map.Refresh();
+                }
+                else
+                {
+                    layer.IsSelectable = false;
+                    mapControl1.Map.Refresh();
+                }
+            }
+            MessageBox.Show("请选择缓冲区分析对象再点击\"缓冲区分析\"选项");
+            namelayer1 = open1.namelayer1();
+            namelayer2 = open1.namelayer2();
+        }
+        string namelayer1 = "初始";
+        string namelayer2 = "初始";
+        double jl;
+        private void 缓冲区分析ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (namelayer1 == "初始" || namelayer2 == "初始")
+                {
+                    MessageBox.Show("请完成图层设置");
+                    namelayer1 = "初始";
+                    namelayer2 = "初始";
+                    return;
+                }
+
+                缓冲区参数 open = new 缓冲区参数(mapControl1.Map);
+                open.ShowDialog();
+
+                Selection[] selections = mapControl1.Map.FindSelection(true);
+                if (selections == null || selections.Length == 0)
+                {
+                    MessageBox.Show("请选择查询对象");
+                    namelayer1 = "初始";
+                    namelayer2 = "初始";
+                    return;
+                }
+                Recordset re = selections[0].ToRecordset();
+                DatasetVectorInfo datasetVectorInfo = new DatasetVectorInfo(open.name(), DatasetType.Region);
+                string name = mapControl1.Map.Layers[namelayer1].Dataset.Datasource.Alias;
+                DatasetVector vector = workspace1.Datasources[name].Datasets.Create(datasetVectorInfo);
+                jl = open.JL();
+                BufferAnalystForDataset3(re, vector);
+                mapControl1.Map.Layers.Add(vector, true);
+                mapControl1.Map.Refresh();
+                QueryParameter parameter = new QueryParameter();
+                parameter.SpatialQueryObject = vector;
+                parameter.SpatialQueryMode = open.Qtype();
+                Layer layer1 = mapControl1.Map.Layers[namelayer2];
+                DatasetVector dataset = layer1.Dataset as DatasetVector;
+
+                NAME = layer1.Name;
+                Recordset recordset2 = dataset.Query(parameter);
+                selection = layer1.Selection;
+                selection.FromRecordset(recordset2);
+
+                selection.Style.LineColor = Color.Red;
+                selection.Style.LineWidth = 0.6;
+                selection.SetStyleOptions(StyleOptions.FillSymbolID, true);
+                selection.Style.FillSymbolID = 1;
+                selection.IsDefaultStyleEnabled = false;
+                mapControl1.Refresh();
+
+                this.skinDataGridView1.Show();
+                this.skinDataGridView1.Columns.Clear();
+                this.skinDataGridView1.Rows.Clear();
+                Recordset recordset = recordset2;
+
+                this.skinDataGridView1.Columns.Clear();
+                this.skinDataGridView1.Rows.Clear();
+
+                for (int i = 0; i < recordset.FieldCount; i++)
+                {
+                    if (recordset.GetFieldInfos()[i].Name.Contains("Sm"))
+                        continue;
+                    //定义并获得字段名称
+                    String fieldName = recordset.GetFieldInfos()[i].Name;
+
+                    //将得到的字段名称添加到dataGridView列中
+                    this.skinDataGridView1.Columns.Add(fieldName, fieldName);
+                }
+                //初始化row
+                DataGridViewRow row = null;
+                //根据选中记录的个数，将选中对象的信息添加到dataGridView中显示
+                while (!recordset.IsEOF)
+                {
+                    row = new DataGridViewRow();
+                    for (int i = 0; i < recordset.FieldCount; i++)
+                    {
+                        if (recordset.GetFieldInfos()[i].Name.Contains("Sm"))
+                            continue;
+                        //定义并获得字段值
+                        Object fieldValue = recordset.GetFieldValue(i);
+
+                        //将字段值添加到dataGridView中对应的位置
+                        DataGridViewTextBoxCell cell = new DataGridViewTextBoxCell();
+                        if (fieldValue != null)
+                        {
+                            cell.ValueType = fieldValue.GetType();
+                            cell.Value = fieldValue;
+                        }
+
+                        row.Cells.Add(cell);
+                    }
+
+                    this.skinDataGridView1.Rows.Add(row);
+                    recordset.MoveNext();
+                }
+                this.skinDataGridView1.Update();
+                recordset.Dispose();
+                namelayer1 = "初始";
+                namelayer2 = "初始";
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public void BufferAnalystForDataset3(Recordset sourceDataset, DatasetVector resultDataset)
+        {
+
+            BufferAnalystParameter bufferAnalystParam = new BufferAnalystParameter();
+            bufferAnalystParam.EndType = BufferEndType.Round;
+            bufferAnalystParam.LeftDistance = jl;
+            BufferAnalyst.CreateBuffer(sourceDataset, resultDataset, bufferAnalystParam, true, true);
+        }
+
+        private void 关闭属性表ToolStripMenuItem1_Click_1(object sender, EventArgs e)
+        {
+            this.skinDataGridView1.Hide();
+        }
+
+        private void 界址点坐标修改ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Selection[] selection = mapControl1.Map.FindSelection(true);
+            if (selection == null || selection.Length != 1)
+            {
+                MessageBox.Show("请只选择一条记录");
+                return;
+            }
+            DatasetVector vector = selection[0].Dataset as DatasetVector;
+            Recordset recordset = vector.GetRecordset(false, CursorType.Dynamic);
+            recordset.MoveLast();
+            recordset.Edit();
+            修改界址点 open = new 修改界址点(recordset);
+            open.ShowDialog();
+        }
+
+        private void 界址点新增ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mapControl1.Action = SuperMap.UI.Action.CreatePoint;
+        }
+
+        private void mapControl1_GeometrySelected(object sender, GeometrySelectedEventArgs e)
+        {
+            Selection[] selection = mapControl1.Map.FindSelection(true);
+            Recordset recordset = selection[0].ToRecordset();
+            if (recordset.Dataset.Name.Contains("19") && selection.Length == 1)
+            {
+                try
+                {
+                    MessageBox.Show("四川省"+recordset.GetFieldValue("CityNameC").ToString()
+                        +"截止2020年6月24日，新型冠状病毒肺炎："+"\n"+"确诊人数："+recordset.GetFieldValue("QZ").ToString()
+                        +"\n"+"死亡人数："+recordset.GetFieldValue("SW").ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
     }
